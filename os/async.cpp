@@ -12,9 +12,9 @@ int threadFunc(int interval) {
 }
 
 int main() {
-    auto tpStart = chrono::high_resolution_clock::now();
     future<int> fuRes1 = async(launch::async, threadFunc, 1);
     future<int> fuRes2 = async(launch::async, threadFunc, 2);
+    auto tpStart = chrono::high_resolution_clock::now();
     int result = fuRes1.get() + fuRes2.get();
     auto tpEnd = chrono::high_resolution_clock::now();
     auto duration = tpEnd - tpStart;
