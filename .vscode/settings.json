@@ -1,0 +1,9 @@
+{
+    "code-runner.executorMap": {
+        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "cpp": "cd $dir && g++ -lglfw -framework OpenGL $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+    },
+    "files.associations": {
+        "iostream": "cpp"
+    }
+}
