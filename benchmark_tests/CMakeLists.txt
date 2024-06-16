@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 add_executable(push_back push_back.cpp)
 target_link_libraries(push_back

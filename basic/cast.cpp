@@ -33,7 +33,7 @@ int main(int, char*[])
   std::cout << bar.b << std::endl;
   struct Foo * foo2 = dynamic_cast<struct Foo*>(&bar);
   std::cout << foo2->c << std::endl;
-  struct Bar * bar2  = dynamic_cast<struct Bar*>(&foo);
-  std::cout << bar2->d << std::endl;
+  // struct Bar * bar2  = dynamic_cast<struct Bar*>(&foo);
+  // std::cout << bar2->d << std::endl;
 }
 
