@@ -1,14 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <chrono>
 #include <condition_variable>
-#include <iostream>
 #include <mutex>
 #include <queue>
 #include <string>
-#include <thread>
-#include <vector>
 
 // Abstract class Light
 class Light {

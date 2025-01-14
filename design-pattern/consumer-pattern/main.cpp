@@ -1,4 +1,7 @@
 #include "main.hpp"
+#include <iostream>
+#include <ostream>
+#include <thread>
 
 class PhilipsLight : public Light {
 private:
