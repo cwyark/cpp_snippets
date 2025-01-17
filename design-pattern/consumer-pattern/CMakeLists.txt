@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
 add_executable(consumer-pattern main.cpp)
 
@@ -18,6 +18,7 @@ target_link_libraries(
   gtest_main # GoogleTest entry point
 )
 
-# Add the tests to CTest's test list so they will be run with `make test` or `ctest`
+# Add the tests to CTest's test list so they will be
+# run with `make test` or `ctest`
 include(GoogleTest)
 gtest_discover_tests(unit_tests)
