@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 14)
 set(BENCHMARK_ENABLE_TESTING OFF)
-add_subdirectory(googletest)
-add_subdirectory(benchmark)
 add_subdirectory(design-pattern)
 add_subdirectory(basic)
 add_subdirectory(benchmark_tests)
