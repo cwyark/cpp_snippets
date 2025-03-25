@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 // Implement a hashtable.
 // hashtable => should habe a hash function.
@@ -19,10 +20,10 @@ public:
 
   T get(K key) {}
 
-  void delete(K key) {}
+  // void delete(K key) {}
 
 private:
-  vector<ListNode> m_array;
+  std::vector<ListNode> m_array;
 };
 
 int main() {}

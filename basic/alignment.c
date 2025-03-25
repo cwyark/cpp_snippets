@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct _s1 {
+typedef struct {
   char a[5];
 } s1;
 

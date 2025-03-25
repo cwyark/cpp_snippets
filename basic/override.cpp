@@ -1,34 +1,23 @@
 #include <iostream>
 
 class CA {
-  public:
-  void func1(void)
-  {
-    std::cout << "func1 in CA" << std::endl;
-  }
+public:
+  void func1(void) { std::cout << "func1 in CA" << std::endl; }
 
-  virtual void func2(void)
-  {
-    std::cout << "func2 in CA" << std::endl;
-  }
+  virtual void func2(void) { std::cout << "func2 in CA" << std::endl; }
 };
 
 class CB : public CA {
-  public:
-  void func1(void)
-  {
-    std::cout << "func1 in CB" << std::endl;
-  }
-  void func2(void) override
-  {
+public:
+  void func1(void) { std::cout << "func1 in CB" << std::endl; }
+  void func2(void) override {
     // Specify override to tell compiler 'func2' is
     // an override function of 'func2' in CA class
     std::cout << "func2 in CB" << std::endl;
   }
 };
 
-int main(int, char* [])
-{
+int main(int, char *[]) {
   CA *objA = new CA();
   CB *objB = new CB();
   objA->func1();

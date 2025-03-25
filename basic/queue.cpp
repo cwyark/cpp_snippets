@@ -1,4 +1,3 @@
-#include <hashtable.h>
 #include <iostream>
 #include <queue>
 

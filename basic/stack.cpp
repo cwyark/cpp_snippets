@@ -1,8 +1,7 @@
-#include <stdint.h>
-#include <stdbool.h>
-#include <string>
 #include <iostream>
-
+#include <stdbool.h>
+#include <stdint.h>
+#include <string>
 
 // stack can be implemeted in a fixed size array or linked list
 
@@ -13,84 +12,78 @@
 
 using namespace std;
 
-template<typename T>
-class ArrayStack {
-    public:
-    ArrayStack(int size) {
-        this->data = new T[size];
-        this->max_size = size;
-        this->top_ptr = &this->data[0];
+template <typename T> class ArrayStack {
+public:
+  ArrayStack(int size) {
+    this->data = new T[size];
+    this->max_size = size;
+    this->top_ptr = &this->data[0];
+  }
+  ~ArrayStack() { delete this->data; };
+  bool pop(T *value) {
+    if (this->isEmpty()) {
+      return false;
     }
-    ~ArrayStack() {
-        delete this->data;
-    };
-    bool pop(T * value) {
-        if (this->isEmpty()) {
-            return false;
-        }
-        *value = *this->top_ptr;
-        this->top_ptr -= 1;
-        return true;
+    *value = *this->top_ptr;
+    this->top_ptr -= 1;
+    return true;
+  }
+  bool push(T value) {
+    if (this->isFull()) {
+      return false;
     }
-    bool push(T value) {
-        if (this->isFull()) {
-            return false;
-        }
-        this->top_ptr += 1;
-        *this->top_ptr = value;
-        return true;
+    this->top_ptr += 1;
+    *this->top_ptr = value;
+    return true;
+  }
+  bool isEmpty() {
+    if (this->top_ptr == &this->data[0]) {
+      return true;
+    } else {
+      return false;
     }
-    bool isEmpty() {
-        if (this->top_ptr == &this->data[0]) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    bool isFull() {
-        int position = this->top_ptr - &this->data[0];
+  }
+  bool isFull() {
+    int position = this->top_ptr - &this->data[0];
 
-        if (position >= 10) {
-            return true; 
-        } else {
-            return false;
-        }
+    if (position >= 10) {
+      return true;
+    } else {
+      return false;
     }
-    T peak() {
-        return *this->top_ptr;
-    }
-    private:
-    T * data;
-    int max_size;
-    int * top_ptr;
+  }
+  T peak() { return *this->top_ptr; }
+
+private:
+  T *data;
+  int max_size;
+  int *top_ptr;
 };
 
-int main(int argc, char *argv[])
-{
-    int value = 0;
+int main(int argc, char *argv[]) {
+  int value = 0;
 
-    ArrayStack<int> _as(10);
+  ArrayStack<int> _as(10);
 
-    if (_as.push(100) == false) {
-        exit(1);
-        std::cout << "push failed" << std::endl;
-    }
+  if (_as.push(100) == false) {
+    exit(1);
+    std::cout << "push failed" << std::endl;
+  }
 
-    if (_as.push(50) == false) {
-        exit(1);
-        std::cout << "push failed" << std::endl;
-    }
+  if (_as.push(50) == false) {
+    exit(1);
+    std::cout << "push failed" << std::endl;
+  }
 
-    if (_as.pop(&value) == false) {
-        std::cout << "pop failed" << std::endl;
-    }
+  if (_as.pop(&value) == false) {
+    std::cout << "pop failed" << std::endl;
+  }
 
-    if (value != 50) {
-        std::cout << "stack push and pop value inconsistent" << std::endl;
-    }
+  if (value != 50) {
+    std::cout << "stack push and pop value inconsistent" << std::endl;
+  }
 
-    exit(0);
-
+  exit(0);
 }
 
 /*
@@ -110,7 +103,7 @@ concat Stack 1 head to Stack 2 head
    |       |
   B top      B end
 
-   SSSSSSSSS -> 
+   SSSSSSSSS ->
    ^       ^
    |       |
    B end   B top
