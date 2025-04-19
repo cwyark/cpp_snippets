@@ -16,25 +16,24 @@
 #include <vector>
 
 std::counting_semaphore<> maxAllowReaderSema(10);
+std::binary_semaphore rw_sema(1);
 std::mutex file_mutex;
 
 void read_configuration(std::fstream &file) {
   while (true) {
     maxAllowReaderSema.acquire();
-    {
-      std::lock_guard<std::mutex> lock(file_mutex);
-      std::cout << "get config\n";
-    }
+    rw_sema.acquire(); // ensure no writers is writing.
+    std::cout << "get config\n";
+    rw_sema.release();
     maxAllowReaderSema.release();
   }
 }
 
 void write_configuration(std::fstream &file) {
   while (true) {
-    {
-      std::lock_guard<std::mutex> lock(file_mutex);
-      file << "configuration\n";
-    }
+    rw_sema.acquire();
+    file << "configuration\n";
+    rw_sema.release();
     std::this_thread::sleep_for(std::chrono::seconds(1));
   }
 }
