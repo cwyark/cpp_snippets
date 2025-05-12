@@ -2,17 +2,17 @@
 #include <mutex>
 #include <thread>
 
-static int counter = 0;
-static std::mutex mutex;
+int counter = 0;
+std::mutex mutex;
 
-void thread_A(void *arg) {
+void thread_A(void) {
   mutex.lock();
   std::cout << "counter increment" << std::endl;
   counter++;
   mutex.unlock();
 }
 
-void thread_B(void *arg) {
+void thread_B(void) {
   mutex.lock();
   std::cout << "counter decrement" << std::endl;
   counter--;
@@ -20,8 +20,8 @@ void thread_B(void *arg) {
 }
 
 int main() {
-  std::thread t1(thread_A, nullptr);
-  std::thread t2(thread_B, nullptr);
+  std::thread t1(thread_A);
+  std::thread t2(thread_B);
   t1.join();
   t2.join();
   std::cout << "final counter value is " << counter << std::endl;

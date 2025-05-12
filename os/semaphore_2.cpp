@@ -21,28 +21,28 @@
 
 int buffer_len = 10;
 std::queue<int> data_queue;
-std::counting_semaphore<> fullSema(0);
-std::counting_semaphore<> emptySema(buffer_len);
+std::counting_semaphore<> full_smea(0);
+std::counting_semaphore<> empty_sema(buffer_len);
 std::atomic<bool> should_stop = false;
 
 std::mutex mtx;
 
 void producer(int id) {
   while (!should_stop) {
-    emptySema.acquire(); // wait for empty slot
+    empty_sema.acquire(); // wait for empty slot
     {
       std::lock_guard<std::mutex> lock(mtx);
       data_queue.push(1);
       std::cout << "Task " << id << " push data: 1\n";
     }
 
-    fullSema.release();
+    full_smea.release();
   }
 }
 
 void consumer(int id) {
   while (!should_stop) {
-    fullSema.acquire();
+    full_smea.acquire();
     int data;
     {
       std::lock_guard<std::mutex> lock(mtx);
@@ -53,7 +53,7 @@ void consumer(int id) {
       std::cout << "Task " << id << " pop data: " << data << std::endl;
     }
 
-    emptySema.release();
+    empty_sema.release();
   }
 }
 

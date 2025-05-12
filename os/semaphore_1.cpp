@@ -13,13 +13,12 @@ void worker(int id) {
 }
 
 int main() {
-  std::thread t1(worker, 1);
-  std::thread t2(worker, 2);
-  std::thread t3(worker, 3);
-  std::thread t4(worker, 4);
-  t1.join();
-  t2.join();
-  t3.join();
-  t4.join();
+  std::vector<std::thread> threads;
+  for (int i = 0; i < 5; ++i) {
+    threads.emplace_back(worker, i);
+  }
+  for (auto &t : threads) {
+    t.join();
+  }
   return 0;
 }
