@@ -8,9 +8,9 @@ int findIndexOfTarget(const std::vector<int> &arr, int target) {
   int right = arr.size() - 1;
   while (left <= right) {
     int middle = left + (right - left) / 2; // use this to prevents overflow
-    if (arr[middle] == target) {
+    if (target == arr[middle]) {
       return middle;
-    } else if (arr[middle] < target) {
+    } else if (target > arr[middle]) {
       left = middle + 1;
     } else {
       right = middle - 1;
