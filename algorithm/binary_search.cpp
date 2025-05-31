@@ -20,6 +20,7 @@ int findIndexOfTarget(const std::vector<int> &arr, int target) {
 }
 
 int main() {
+  // must be a sorted array
   std::vector<int> array{3, 4, 5, 6, 7};
   int index = findIndexOfTarget(array, 5);
   cout << "index is " << index << endl;
