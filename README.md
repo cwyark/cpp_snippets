@@ -16,5 +16,4 @@ Build the whole project
 
 ```bash
 cmake --build build
-
 ```
