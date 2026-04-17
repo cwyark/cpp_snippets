@@ -40,6 +40,33 @@ public:
     std::reverse(current.begin() + i + 1, current.end());
   };
 
+  void prev() {
+    int n = static_cast<int>(current.size());
+    int i = n - 2;
+    // step 1: find the rightmost i such that current[i] > current[i + 1]
+    while (i >= 0 && current.at(i) <= current.at(i + 1)) {
+      i--;
+    }
+
+    if (i < 0) {
+      // ready smallest permutation wrap to first.
+      reset();
+      return;
+    }
+
+    // step 2: find the rightmost j such that current[j] < current[i]
+    int j = n - 1;
+    while (current.at(j) >= current.at(i)) {
+      j--;
+    }
+
+    // step 3: swap pivot with that element.
+    std::swap(current.at(i), current.at(j));
+
+    // step 4: reverse the suffix to get the maximal ordering for that perfix.
+    std::reverse(current.begin() + i + 1, current.end());
+  }
+
   // reset to first.
   void reset() { current = first; };
 
@@ -88,6 +115,8 @@ int main() {
   auto perm = Permutation("bca");
   std::cout << perm.value() << std::endl;
   perm.next();
+  std::cout << perm.value() << std::endl;
+  perm.prev();
   std::cout << perm.value() << std::endl;
   return 0;
 }
