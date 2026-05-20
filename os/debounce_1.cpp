@@ -1,7 +1,3 @@
-/**
- * Implement a debounce function
- */
-
 #include <chrono>
 #include <iostream>
 #include <thread>

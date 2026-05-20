@@ -17,3 +17,12 @@ Build the whole project
 ```bash
 cmake --build build
 ```
+
+Build with Zig
+
+```bash
+cmake -Bbuild-zig -H. -G "Unix Makefiles" -DUSE_ZIG_CC=ON
+cmake --build build-zig
+```
+
+Use a fresh build directory for Zig, since CMake caches the compiler choice on the first configure.
